@@ -105,9 +105,16 @@ class ResqueScheduler_Worker
 	 */
 	private function updateProcLine($status)
 	{
+		if(function_exists('cli_set_process_title')) {
+	        	cli_set_process_title($processTitle);
+	        } else{
+	       		$this->log($status);
+	        }
+		/* just no
 		if(function_exists('setproctitle')) {
 			setproctitle('resque-scheduler-' . ResqueScheduler::VERSION . ': ' . $status);
 		}
+		*/
 	}
 	
 	/**
@@ -122,6 +129,9 @@ class ResqueScheduler_Worker
 		}
 		else if($this->logLevel == self::LOG_VERBOSE) {
 			fwrite(STDOUT, "** [" . strftime('%T %Y-%m-%d') . "] " . $message . "\n");
+		}else{
+			fwrite(STDOUT, "** [" . strftime('%T %Y-%m-%d') . "] " . $message . "\n");
 		}
+		
 	}
 }
