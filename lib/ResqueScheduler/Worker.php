@@ -106,7 +106,7 @@ class ResqueScheduler_Worker
 	private function updateProcLine($status)
 	{
 		if(function_exists('cli_set_process_title')) {
-	        	cli_set_process_title($processTitle);
+	        	cli_set_process_title($status);
 	        } else{
 	       		$this->log($status);
 	        }
