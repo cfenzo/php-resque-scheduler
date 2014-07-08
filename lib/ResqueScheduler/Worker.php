@@ -105,8 +105,9 @@ class ResqueScheduler_Worker
 	 */
 	private function updateProcLine($status)
 	{
+		$processTitle = 'resque-scheduler-' . Resque::VERSION . ': ' . $status;
 		if(function_exists('cli_set_process_title')) {
-	        	cli_set_process_title($status);
+	        	cli_set_process_title($processTitle);
 	        } else{
 	       		$this->log($status);
 	        }
